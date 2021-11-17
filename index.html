@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julio Tech - Home</title>
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Swiper Lib -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+    <!-- Css -->
+    <link rel="stylesheet" href="./src/view/styles/index.css" />
+</head>
+<body>
+    <header id="header">
+        <img id="logo" src="./src/img/logo.png" alt="Logo">
+        <div class="cart">
+            <img src="./src/img/like.png" alt="Produtos curtidos">
+            <img src="./src/img/shopping-cart.png" alt="Carrinho de compras">
+        </div>
+    </header>
+
+    <nav>
+        <li><a href="#">Todos os departamentos</a></li>
+        <li><a href="#">Lançamentos</a></li>
+        <li><a href="./src/view/pages/about.html">Sobre nós</a></li>
+    </nav>
+
+    <div class="slide">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="./src/img/banner.jpeg" alt="Banner"></div>
+                <div class="swiper-slide"><img src="./src/img/banner.jpeg" alt="Banner"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+
+    <section>
+        <div class="shop-item">
+            <div class="btn-content"><a href="#header">Comprar</a></div>
+            <img src="./src/img/product.png" alt="Produto">
+            <small>Amd Ryzen 5 3600</small>
+            <strong>R$ 500,00</strong>
+        </div>
+        <div class="shop-item">
+            <div class="btn-content"><a href="#header">Comprar</a></div>
+            <img src="./src/img/product.png" alt="Produto">
+            <small>Amd Ryzen 5 3600</small>
+            <strong>R$ 500,00</strong>
+        </div>
+        <div class="shop-item">
+            <div class="btn-content"><a href="#header">Comprar</a></div>
+            <img src="./src/img/product.png" alt="Produto">
+            <small>Amd Ryzen 5 3600</small>
+            <strong>R$ 500,00</strong>
+        </div>
+        <div class="shop-item">
+            <div class="btn-content"><a href="#header">Comprar</a></div>
+            <img src="./src/img/product.png" alt="Produto">
+            <small>Amd Ryzen 5 3600</small>
+            <strong>R$ 500,00</strong>
+        </div>
+    </section>
+
+    <footer>
+        <div class="column">
+            <strong>Fale conosco</strong>
+            <small>+55 (51) 99173-9985</small>
+            <small>+55 (51) 99173-9985</small>
+        </div>
+        <div class="column">
+            <strong>Certificações</strong>
+            <small>Google sites</small>
+            <small>Site blindado</small>
+        </div>
+        <div class="column">
+            <strong>Institucional</strong>
+            <small>Sobre nós</a></small>
+            <small>Trabalhe conosco</a></small>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script>
+      const swiper = new Swiper(".swiper", {
+        direction: "horizontal",
+        loop: false,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+</body>
+</html>
