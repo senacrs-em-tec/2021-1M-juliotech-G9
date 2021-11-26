@@ -21,6 +21,7 @@
     <!-- Css -->
     <link rel="stylesheet" href="../styles/product.css" />
     <link rel="stylesheet" href="../styles/index.css" />
+    <link rel="stylesheet" href="jquery.exzoom.css"/>
 
     <title>Julio Tech - Compra</title>
   </head>
@@ -42,6 +43,149 @@
     <section>
         <div class="container">
             
+    <h1>AMD Ryzen 5 3600x, 6-Core, 12 Threads</h1>
+
+    <div class="exzoom" id="exzoom">
+      <div class="exzoom_img_box">
+        <ul class='exzoom_img_ul'>
+          <li><img src="/src/img/ryzen-img-1.jpg"/></li>
+          <li><img src="/src/img/ryzen-img-2.jpg"/></li>
+          <li><img src="/src/img/ryzen-img-3.jpg"/></li>
+          <li><img src="/src/img/ryzen-img-4.jpg"/></li>
+        </ul>
+      </div>
+      <div class="exzoom_nav"></div>
+      <p class="exzoom_btn">
+          <a href="javascript:void(0);" class="exzoom_prev_btn"> < </a>
+          <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
+      </p>
+    </div>
+
+    <aside>
+      <strong id="price">R$500,00</strong>
+      <p id="buy"><a href="https://wa.me/5551991617519?text=Compra%20feita%20código%20do%20produto:%2098101" target="_blank">Finalizar pelo Whatsapp</a></p>
+      <p id="keep-buying"><a href="index.html">Continuar comprando</a></p>
+      <div id="payment-methods">
+        <img />
+      </div>
+    </aside>
+
+    <div id="cep-consult">
+      <p>Consulte o frete e o prazo de entrega</p>
+      <script>
+        $(document).ready(function () {
+          function limpa_formulário_cep() {
+            $("#rua").val("");
+            $("#bairro").val("");
+            $("#cidade").val("");
+            $("#uf").val("");
+            $("#ibge").val("");
+          }
+
+          $("#cep").blur(function () {
+            var cep = $(this).val().replace(/\D/g, "");
+
+            if (cep != "") {
+              var validacep = /^[0-9]{8}$/;
+
+              if (validacep.test(cep)) {
+                $("#rua").val("...");
+                $("#bairro").val("...");
+                $("#cidade").val("...");
+                $("#uf").val("...");
+                $("#ibge").val("...");
+
+                $.getJSON(
+                  "https://viacep.com.br/ws/" + cep + "/json/?callback=?",
+                  function (dados) {
+                    if (!("erro" in dados)) {
+                      $("#rua").val(dados.logradouro);
+                      $("#bairro").val(dados.bairro);
+                      $("#cidade").val(dados.localidade);
+                      $("#uf").val(dados.uf);
+                      $("#ibge").val(dados.ibge);
+                    } else {
+                      limpa_formulário_cep();
+                      alert("CEP não encontrado.");
+                    }
+                  }
+                );
+              } else {
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+              }
+            } else {
+              limpa_formulário_cep();
+            }
+          });
+        });
+      </script>
+      <form method="get" action=".">
+        <label>
+          Cep:
+          <input
+            name="cep"
+            type="text"
+            id="cep"
+            value=""
+            size="10"
+            maxlength="9"
+          />
+        </label>
+        <br />
+        <label>
+          Rua:
+          <input name="rua" type="text" id="rua" size="60" />
+        </label>
+        <br />
+        <label>
+          Bairro:
+          <input name="bairro" type="text" id="bairro" size="40" />
+        </label>
+        <br />
+        <label>
+          Cidade:
+          <input name="cidade" type="text" id="cidade" size="40" />
+        </label>
+        <br />
+        <label>
+          Estado:
+          <input name="uf" type="text" id="uf" size="2" />
+        </label>
+        <br />
+        <label>
+          IBGE:
+          <input name="ibge" type="text" id="ibge" size="8" />
+        </label>
+        <br />
+      </form>
+      <p>Preço adicional do frete <a>R$10,00</a></p>
+    </div>
+
+    <div id="description">
+      <h3>Descrição de produto</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam
+        commodo erat, ac tristique velit suscipit a. Vivamus semper posuere
+        aliquam. In metus ex, laoreet sit amet placerat eu, fermentum quis
+        lorem. Ut a lectus est. Vestibulum a felis molestie, eleifend diam eget,
+        scelerisque velit. Quisque eget velit non arcu vestibulum aliquam id vel
+        massa. Suspendisse tellus nisl, dapibus eget condimentum vitae, eleifend
+        non nibh.
+      </p>
+    </div>
+    <div id="tecnicall-info">
+      <h3>Informações técnicas</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam
+        commodo erat, ac tristique velit suscipit a. Vivamus semper posuere
+        aliquam. In metus ex, laoreet sit amet placerat eu, fermentum quis
+        lorem. Ut a lectus est. Vestibulum a felis molestie, eleifend diam eget,
+        scelerisque velit. Quisque eget velit non arcu vestibulum aliquam id vel
+        massa. Suspendisse tellus nisl, dapibus eget condimentum vitae, eleifend
+        non nibh.
+      </p>
+    </div>
         </div>
     </section>
 
