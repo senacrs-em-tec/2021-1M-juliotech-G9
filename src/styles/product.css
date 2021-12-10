@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  font-size: 62,5%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  font-family: Arial;
+}
+h1 {
+  padding-left: 1rem;
+  font-size: 3rem;
+}
+#exzoom {
+  padding-top: 40rem;
+  padding-left: 20rem;
+  top: 100%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  width: 30rem;
+}
+#buy-options {
+  float: right;
+  padding-top: 10rem
+}
+#price {
+  color: blue;
+  font-size: 2rem;
+}
+#cep-consult{
+  padding-left: 1rem;
+}
+#info{
+  margin: 1rem;
+}

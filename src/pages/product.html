@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Swiper Lib -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+    <!-- Css -->
+    <link rel="stylesheet" href="../styles/product.css" />
+    <link rel="stylesheet" href="../styles/index.css" />
+    <link rel="stylesheet" href="../../jquery.exzoom.css" />
+
+    <script
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../jquery.exzoom.js"></script>
+
+    <title>Julio Tech - Compra</title>
+  </head>
+  <body>
+    <header id="header">
+      <img id="logo" src="../img/logo.png" alt="Logo" />
+      <div class="cart">
+        <img src="../img/like.png" alt="Produtos curtidos" />
+        <img src="../img/shopping-cart.png" alt="Carrinho de compras" />
+      </div>
+    </header>
+
+    <nav>
+      <li><a href="../../index.html">Todos os departamentos</a></li>
+      <li><a href="../../index.html">Lançamentos</a></li>
+      <li><a href="../pages/about.html">Sobre nós</a></li>
+    </nav>
+    <div id="buy-options">
+      <strong id="price">R$500,00</strong>
+      <p id="buy">
+        <a
+          href="https://wa.me/5551991617519?text=Compra%20feita%20código%20do%20produto:%2098101"
+          target="_blank"
+          >Finalizar pelo Whatsapp</a
+        >
+      </p>
+      <p id="keep-buying">
+        <a href="../../index.html">Continuar comprando</a>
+      </p>
+      <div id="payment-methods">
+        <img />
+      </div>
+    </div>
+    <h1>AMD Ryzen 5 3600x, 6-Core, 12 Threads</h1>
+    <div class="exzoom" id="exzoom">
+      <div class="exzoom_img_box">
+        <ul class="exzoom_img_ul">
+          <li><img src="../img/ryzen-img-1.jpg" /></li>
+          <li><img src="../img/ryzen-img-2.jpg" /></li>
+          <li><img src="../img/ryzen-img-3.jpg" /></li>
+          <li><img src="../img/ryzen-img-4.jpg" /></li>
+        </ul>
+      </div>
+      <div class="exzoom_nav"></div>
+      <p class="exzoom_btn">
+        <a href="javascript:void(0);" class="exzoom_prev_btn"> < </a>
+        <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
+      </p>
+    </div>
+    <script>
+      $(function () {
+        $("#exzoom").exzoom({
+          // thumbnail nav options
+          navWidth: 60,
+          navHeight: 60,
+          navItemNum: 5,
+          navItemMargin: 7,
+          navBorder: 1,
+
+          // autoplay
+          autoPlay: true,
+
+          // autoplay interval in milliseconds
+          autoPlayTimeout: 5000,
+        });
+      });
+    </script>
+    <div id="cep-consult">
+      <p>Consulte o frete e o prazo de entrega</p>
+      <script>
+        $(document).ready(function () {
+          function limpa_formulário_cep() {
+            $("#rua").val("");
+            $("#bairro").val("");
+            $("#cidade").val("");
+            $("#uf").val("");
+            $("#ibge").val("");
+          }
+
+          $("#cep").blur(function () {
+            var cep = $(this).val().replace(/\D/g, "");
+
+            if (cep != "") {
+              var validacep = /^[0-9]{8}$/;
+
+              if (validacep.test(cep)) {
+                $("#rua").val("...");
+                $("#bairro").val("...");
+                $("#cidade").val("...");
+                $("#uf").val("...");
+                $("#ibge").val("...");
+
+                $.getJSON(
+                  "https://viacep.com.br/ws/" + cep + "/json/?callback=?",
+                  function (dados) {
+                    if (!("erro" in dados)) {
+                      $("#rua").val(dados.logradouro);
+                      $("#bairro").val(dados.bairro);
+                      $("#cidade").val(dados.localidade);
+                      $("#uf").val(dados.uf);
+                      $("#ibge").val(dados.ibge);
+                    } else {
+                      limpa_formulário_cep();
+                      alert("CEP não encontrado.");
+                    }
+                  }
+                );
+              } else {
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+              }
+            } else {
+              limpa_formulário_cep();
+            }
+          });
+        });
+      </script>
+      <form method="get" action=".">
+        <label>
+          Cep:
+          <input name="cep" type="text" id="cep" value="" size="40" maxlength="9"/>
+        </label>
+        <br />
+        <label>
+          Rua:
+          <input name="rua" type="text" id="rua" size=40"/>
+        </label>
+        <br />
+        <label>
+          Bairro:
+          <input name="bairro" type="text" id="bairro" size="40"/>
+        </label>
+        <br />
+        <label>
+          Cidade:
+          <input name="cidade" type="text" id="cidade" size="40"/>
+        </label>
+        <br />
+        <label>
+          Estado:
+          <input name="uf" type="text" id="uf" size="40"/>
+        </label>
+        <br />
+        <label>
+          IBGE:
+          <input name="ibge" type="text" id="ibge" size="40"/>
+        </label>
+        <br />
+      </form>
+      <p>Preço adicional do frete <a>R$10,00</a></p>
+    </div>
+    <div id="info">
+      <div id="description">
+        <h3>Descrição de produto</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam
+          commodo erat, ac tristique velit suscipit a. Vivamus semper posuere
+          aliquam. In metus ex, laoreet sit amet placerat eu, fermentum quis
+          lorem. Ut a lectus est. Vestibulum a felis molestie, eleifend diam
+          eget, scelerisque velit. Quisque eget velit non arcu vestibulum
+          aliquam id vel massa. Suspendisse tellus nisl, dapibus eget
+          condimentum vitae, eleifend non nibh.
+        </p>
+      </div>
+      <div id="tecnicall-info">
+        <h3>Informações técnicas</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam
+          commodo erat, ac tristique velit suscipit a. Vivamus semper posuere
+          aliquam. In metus ex, laoreet sit amet placerat eu, fermentum quis
+          lorem. Ut a lectus est. Vestibulum a felis molestie, eleifend diam
+          eget, scelerisque velit. Quisque eget velit non arcu vestibulum
+          aliquam id vel massa. Suspendisse tellus nisl, dapibus eget
+          condimentum vitae, eleifend non nibh.
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="column">
+        <strong>Fale conosco</strong>
+        <small>+55 (51) 99173-9985</small>
+        <small>+55 (51) 99173-9985</small>
+      </div>
+      <div class="column">
+        <strong>Certificações</strong>
+        <small>Google sites</small>
+        <small>Site blindado</small>
+      </div>
+      <div class="column">
+        <strong>Institucional</strong>
+        <small><a href="./about.html"">Sobre nós</a></small>
+        <small
+          ><a href="./about.html">Trabalhe conosco</a></small
+        >
+      </div>
+    </footer>
+  </body>
+</html>
